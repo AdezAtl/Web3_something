@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtBlocks | NFT Marketplace</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-cube"></i>
+                    <span>ArtBlocks</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#explore">Explore</a></li>
+                        <li><a href="#collections">Collections</a></li>
+                        <li><a href="#create">Create</a></li>
+                    </ul>
+                </nav>
+                <div class="wallet-connect">
+                    <button id="connectWallet" class="wallet-btn">
+                        <i class="fas fa-wallet"></i>
+                        Connect Wallet
+                    </button>
+                    <div id="walletInfo" class="wallet-info hidden">
+                        <span id="walletAddress"></span>
+                        <span id="balance">0 ETH</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Discover, Collect, and Sell Extraordinary NFTs</h1>
+                    <p>ArtBlocks is the world's first and largest NFT marketplace for crypto collectibles and non-fungible tokens.</p>
+                    <div class="hero-buttons">
+                        <button class="btn primary">Explore</button>
+                        <button class="btn secondary">Create</button>
+                    </div>
+                    <div class="stats">
+                        <div class="stat">
+                            <h3>125K+</h3>
+                            <p>Collections</p>
+                        </div>
+                        <div class="stat">
+                            <h3>2.5M+</h3>
+                            <p>Items</p>
+                        </div>
+                        <div class="stat">
+                            <h3>850K+</h3>
+                            <p>Artists</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="nft-showcase">
+                        <div class="nft-card featured">
+                            <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=400" alt="NFT Art">
+                            <div class="nft-info">
+                                <h4>Cosmic Journey #124</h4>
+                                <div class="price">2.5 ETH</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured NFTs -->
+    <section id="explore" class="featured">
+        <div class="container">
+            <h2>Featured NFTs</h2>
+            <div class="nft-grid" id="nftGrid">
+                <!-- NFTs will be loaded by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Collections -->
+    <section id="collections" class="collections">
+        <div class="container">
+            <h2>Top Collections</h2>
+            <div class="collections-grid">
+                <div class="collection-card">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=300" alt="Collection">
+                    <div class="collection-info">
+                        <h4>CyberPunks</h4>
+                        <p>Floor: 0.85 ETH</p>
+                    </div>
+                </div>
+                <div class="collection-card">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300" alt="Collection">
+                    <div class="collection-info">
+                        <h4>Art Blocks</h4>
+                        <p>Floor: 1.2 ETH</p>
+                    </div>
+                </div>
+                <div class="collection-card">
+                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300" alt="Collection">
+                    <div class="collection-info">
+                        <h4>Bored Ape</h4>
+                        <p>Floor: 45 ETH</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Create Section -->
+    <section id="create" class="create">
+        <div class="container">
+            <div class="create-content">
+                <div class="create-text">
+                    <h2>Create and Sell Your NFTs</h2>
+                    <p>Join our community of artists and creators. Upload your work, set up your collection, and start selling.</p>
+                    <button class="btn primary">Start Creating</button>
+                </div>
+                <div class="create-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h4>Set Up Your Wallet</h4>
+                        <p>Connect your crypto wallet to get started.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h4>Create Your Collection</h4>
+                        <p>Upload your work and set up your collection.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h4>List Them For Sale</h4>
+                        <p>Choose between auctions and fixed-price listings.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <i class="fas fa-cube"></i>
+                        <span>ArtBlocks</span>
+                    </div>
+                    <p>The world's first and largest NFT marketplace.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Marketplace</h4>
+                    <ul>
+                        <li><a href="#">All NFTs</a></li>
+                        <li><a href="#">Art</a></li>
+                        <li><a href="#">Collectibles</a></li>
+                        <li><a href="#">Photography</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Account</h4>
+                    <ul>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Favorites</a></li>
+                        <li><a href="#">Watchlist</a></li>
+                        <li><a href="#">My Collections</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 ArtBlocks. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
