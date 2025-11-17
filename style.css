@@ -19,6 +19,7 @@ body {
     background-color: var(--dark);
     color: var(--light);
     line-height: 1.6;
+    width: 100vh;
 }
 
 .container {
