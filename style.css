@@ -187,7 +187,8 @@ nav a:hover {
 .hero-visual {
     display: flex;
     justify-content: center;
-    height: 580px;
+    height: 450px;
+    overflow: hidden;
     
 }
 
@@ -195,6 +196,7 @@ nav a:hover {
     position: relative;
     padding-top: 5px;
     padding-bottom: 5px;
+    height: 100%;
     
 }
 
@@ -204,6 +206,7 @@ nav a:hover {
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s;
+    height: 100%;
 }
 
 
