@@ -187,10 +187,12 @@ nav a:hover {
 .hero-visual {
     display: flex;
     justify-content: center;
+    transform: rotate(-5deg);
 }
 
 .nft-showcase {
     position: relative;
+    transform: rotate(-5deg);
 }
 
 .nft-card {
@@ -199,34 +201,39 @@ nav a:hover {
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s;
+    transform: rotate(-5deg);
 }
 
 
 }
 
 .nft-card:hover {
-    transform: translateY(-10px) rotate(0.5deg);
+    transform: translateY(-10px) rotate(-6.5deg);
 }
 
 .nft-card img {
     width: 100%;
     height: 300px;
     object-fit: cover;
+    transform: rotate(-5deg);
 }
 
 .nft-info {
     padding: 20px;
+    transform: rotate(-5deg);
 }
 
 .nft-info h4 {
     margin-bottom: 10px;
     font-size: 1.2rem;
+    transform: rotate(-5deg);
 }
 
 .price {
     color: var(--primary);
     font-weight: 700;
     font-size: 1.1rem;
+    transform: rotate(-5deg);
 }
 
 /* Featured NFTs */
