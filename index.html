@@ -1,3 +1,4 @@
+<DOCUMENT filename="index.html">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ArtBlocks | NFT Marketplace</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <!-- Header -->
@@ -31,6 +33,7 @@
                     <div id="walletInfo" class="wallet-info hidden">
                         <span id="walletAddress"></span>
                         <span id="balance">0 ETH</span>
+                        <button id="disconnectWallet" class="disconnect-btn">Disconnect</button>
                     </div>
                 </div>
             </div>
@@ -82,6 +85,16 @@
     <section id="explore" class="featured">
         <div class="container">
             <h2>Featured NFTs</h2>
+            <div class="search-filter">
+                <input type="text" id="nftSearch" placeholder="Search NFTs by title or creator...">
+                <select id="sortSelect">
+                    <option value="">Sort by...</option>
+                    <option value="price-asc">Price: Low to High</option>
+                    <option value="price-desc">Price: High to Low</option>
+                    <option value="title-asc">Title: A-Z</option>
+                    <option value="title-desc">Title: Z-A</option>
+                </select>
+            </div>
             <div class="nft-grid" id="nftGrid">
                 <!-- NFTs will be loaded by JavaScript -->
             </div>
@@ -92,28 +105,8 @@
     <section id="collections" class="collections">
         <div class="container">
             <h2>Top Collections</h2>
-            <div class="collections-grid">
-                <div class="collection-card">
-                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=300" alt="Collection">
-                    <div class="collection-info">
-                        <h4>CyberPunks</h4>
-                        <p>Floor: 0.85 ETH</p>
-                    </div>
-                </div>
-                <div class="collection-card">
-                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300" alt="Collection">
-                    <div class="collection-info">
-                        <h4>Art Blocks</h4>
-                        <p>Floor: 1.2 ETH</p>
-                    </div>
-                </div>
-                <div class="collection-card">
-                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300" alt="Collection">
-                    <div class="collection-info">
-                        <h4>Bored Ape</h4>
-                        <p>Floor: 45 ETH</p>
-                    </div>
-                </div>
+            <div class="collections-grid" id="collectionsGrid">
+                <!-- Collections will be loaded by JavaScript -->
             </div>
         </div>
     </section>
@@ -179,11 +172,24 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 ArtBlocks. CR8IVE_pixelz. All rights reserved.</p>
+                <p>&copy; 2026 ArtBlocks. CRE8TIVE_pixels. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+    <div id="nftModal" class="modal hidden">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <img id="modalImage" src="" alt="">
+            <h3 id="modalTitle"></h3>
+            <p id="modalCreator"></p>
+            <div id="modalPrice"></div>
+            <p id="modalDescription"></p>
+            <button class="btn primary">Buy Now</button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
+</DOCUMENT>
