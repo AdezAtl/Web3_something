@@ -1,4 +1,3 @@
-<DOCUMENT filename="index.html">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +6,8 @@
     <title>ArtBlocks | NFT Marketplace</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- ethers.js v6 (latest stable as of early 2026) -->
+    <script src="https://cdn.ethers.io/lib/ethers-6.13.2.umd.min.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -27,12 +28,12 @@
                 </nav>
                 <div class="wallet-connect">
                     <button id="connectWallet" class="wallet-btn">
-                        <i class="fas fa-wallet"></i>
-                        Connect Wallet
+                        <i class="fas fa-wallet"></i> Connect Wallet
                     </button>
                     <div id="walletInfo" class="wallet-info hidden">
                         <span id="walletAddress"></span>
-                        <span id="balance">0 ETH</span>
+                        <span id="balance">...</span>
+                        <span id="networkInfo" style="color:#00d4ff; font-size:0.85rem;"></span>
                         <button id="disconnectWallet" class="disconnect-btn">Disconnect</button>
                     </div>
                 </div>
@@ -52,18 +53,9 @@
                         <button class="btn secondary">Create</button>
                     </div>
                     <div class="stats">
-                        <div class="stat">
-                            <h3>125K+</h3>
-                            <p>Collections</p>
-                        </div>
-                        <div class="stat">
-                            <h3>2.5M+</h3>
-                            <p>Items</p>
-                        </div>
-                        <div class="stat">
-                            <h3>850K+</h3>
-                            <p>Artists</p>
-                        </div>
+                        <div class="stat"><h3>125K+</h3><p>Collections</p></div>
+                        <div class="stat"><h3>2.5M+</h3><p>Items</p></div>
+                        <div class="stat"><h3>850K+</h3><p>Artists</p></div>
                     </div>
                 </div>
                 <div class="hero-visual">
@@ -96,7 +88,7 @@
                 </select>
             </div>
             <div class="nft-grid" id="nftGrid">
-                <!-- NFTs will be loaded by JavaScript -->
+                <!-- NFTs loaded by JS -->
             </div>
         </div>
     </section>
@@ -106,7 +98,7 @@
         <div class="container">
             <h2>Top Collections</h2>
             <div class="collections-grid" id="collectionsGrid">
-                <!-- Collections will be loaded by JavaScript -->
+                <!-- Collections loaded by JS -->
             </div>
         </div>
     </section>
@@ -121,21 +113,9 @@
                     <button class="btn primary">Start Creating</button>
                 </div>
                 <div class="create-steps">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <h4>Set Up Your Wallet</h4>
-                        <p>Connect your crypto wallet to get started.</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <h4>Create Your Collection</h4>
-                        <p>Upload your work and set up your collection.</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <h4>List Them For Sale</h4>
-                        <p>Choose between auctions and fixed-price listings.</p>
-                    </div>
+                    <div class="step"><div class="step-number">1</div><h4>Set Up Your Wallet</h4><p>Connect your crypto wallet to get started.</p></div>
+                    <div class="step"><div class="step-number">2</div><h4>Create Your Collection</h4><p>Upload your work and set up your collection.</p></div>
+                    <div class="step"><div class="step-number">3</div><h4>List Them For Sale</h4><p>Choose between auctions and fixed-price listings.</p></div>
                 </div>
             </div>
         </div>
@@ -172,24 +152,11 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 ArtBlocks. CRE8TIVE_pixels. All rights reserved.</p>
+                <p>© 2026 ArtBlocks. CRE8TIVE_pixels. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <div id="nftModal" class="modal hidden">
-        <div class="modal-content">
-            <span id="closeModal" class="close">&times;</span>
-            <img id="modalImage" src="" alt="">
-            <h3 id="modalTitle"></h3>
-            <p id="modalCreator"></p>
-            <div id="modalPrice"></div>
-            <p id="modalDescription"></p>
-            <button class="btn primary">Buy Now</button>
-        </div>
-    </div>
-
     <script src="script.js"></script>
 </body>
 </html>
-</DOCUMENT>
