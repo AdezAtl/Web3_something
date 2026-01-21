@@ -187,6 +187,7 @@ nav a:hover {
 .hero-visual {
     display: flex;
     justify-content: center;
+    height: 580px;
     
 }
 
@@ -194,7 +195,7 @@ nav a:hover {
     position: relative;
     padding-top: 5px;
     padding-bottom: 5px;
-    height: 580px;
+    
 }
 
 .nft-card {
