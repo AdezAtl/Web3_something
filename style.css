@@ -187,10 +187,14 @@ nav a:hover {
 .hero-visual {
     display: flex;
     justify-content: center;
+    
 }
 
 .nft-showcase {
     position: relative;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 580px;
 }
 
 .nft-card {
