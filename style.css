@@ -187,15 +187,15 @@ nav a:hover {
 .hero-visual {
     display: flex;
     justify-content: center;
-    height: 450px;
+    height: 580px;
+    padding: 0;
     overflow: hidden;
     
 }
 
 .nft-showcase {
     position: relative;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 0;
     height: 100%;
     
 }
@@ -204,6 +204,7 @@ nav a:hover {
     background: var(--gray);
     border-radius: 16px;
     overflow: hidden;
+    padding: 0;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s;
     height: 100%;
