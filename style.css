@@ -39,6 +39,10 @@
     margin: 0;
 }
 
+[hidden] {
+    display: none !important;
+}
+
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 88px;
@@ -231,10 +235,6 @@ ol {
     border: 1px solid var(--ink-line);
     border-radius: 999px;
     font-size: var(--step--1);
-}
-
-.wallet-info[hidden] {
-    display: none;
 }
 
 .wallet-dot {
