@@ -3,159 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ArtBlocks | NFT Marketplace</title>
+    <title>ArtBlocks | Generative art, minted on-chain</title>
+    <meta name="description" content="Collect generative artworks that are drawn from their token hash at the moment they are minted.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <!-- ethers.js v6 (latest stable as of early 2026) -->
-    <script src="https://cdn.ethers.io/lib/ethers-6.13.2.umd.min.js"></script>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-cube"></i>
-                    <span>ArtBlocks</span>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#explore">Explore</a></li>
-                        <li><a href="#collections">Collections</a></li>
-                        <li><a href="#create">Create</a></li>
-                    </ul>
-                </nav>
-                <div class="wallet-connect">
-                    <button id="connectWallet" class="wallet-btn">
-                        <i class="fas fa-wallet"></i> Connect Wallet
-                    </button>
-                    <div id="walletInfo" class="wallet-info hidden">
-                        <span id="walletAddress"></span>
-                        <span id="balance">...</span>
-                        <span id="networkInfo" style="color:#00d4ff; font-size:0.85rem;"></span>
-                        <button id="disconnectWallet" class="disconnect-btn">Disconnect</button>
-                    </div>
+    <a class="skip-link" href="#explore">Skip to artworks</a>
+
+    <header class="site-header">
+        <div class="container header-row">
+            <a class="logo" href="#home" aria-label="ArtBlocks home">
+                <svg viewBox="0 0 32 32" aria-hidden="true" width="28" height="28">
+                    <rect x="2" y="2" width="13" height="13" rx="2" fill="var(--saffron)"/>
+                    <rect x="17" y="2" width="13" height="13" rx="6.5" fill="var(--rose)"/>
+                    <rect x="2" y="17" width="13" height="13" rx="6.5" fill="var(--cobalt)"/>
+                    <rect x="17" y="17" width="13" height="13" rx="2" fill="var(--mint)"/>
+                </svg>
+                <span>ArtBlocks</span>
+            </a>
+            <nav aria-label="Main">
+                <ul>
+                    <li><a href="#explore">Artworks</a></li>
+                    <li><a href="#collections">Collections</a></li>
+                    <li><a href="#create">Create</a></li>
+                </ul>
+            </nav>
+            <div class="wallet">
+                <button id="connectWallet" class="btn btn-primary btn-small">Connect wallet</button>
+                <div id="walletInfo" class="wallet-info" hidden>
+                    <span class="wallet-dot" aria-hidden="true"></span>
+                    <span id="walletAddress" class="mono"></span>
+                    <span id="balance" class="wallet-balance"></span>
+                    <span id="networkInfo" class="wallet-network"></span>
+                    <button id="disconnectWallet" class="btn-text">Disconnect</button>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
+    <main>
+        <section id="home" class="hero">
+            <div class="container hero-grid">
                 <div class="hero-text">
-                    <h1>Discover, Collect, and Sell Extraordinary NFTs</h1>
-                    <p>ArtBlocks is the world's first and largest NFT marketplace for crypto collectibles and non-fungible tokens.</p>
-                    <div class="hero-buttons">
-                        <button class="btn primary">Explore</button>
-                        <button class="btn secondary">Create</button>
-                    </div>
-                    <div class="stats">
-                        <div class="stat"><h3>125K+</h3><p>Collections</p></div>
-                        <div class="stat"><h3>2.5M+</h3><p>Items</p></div>
-                        <div class="stat"><h3>850K+</h3><p>Artists</p></div>
+                    <h1>Art that’s drawn the moment it’s minted.</h1>
+                    <p class="lede">Every piece here is generated from its token hash. Artists write the algorithm; the blockchain picks the seed. Nobody, not even the artist, sees your piece before you mint it.</p>
+                    <div class="hero-actions">
+                        <a href="#explore" class="btn btn-primary">Browse artworks</a>
+                        <a href="#create" class="btn btn-ghost">Publish an algorithm</a>
                     </div>
                 </div>
-                <div class="hero-visual">
-                    <div class="nft-showcase">
-                        <div class="nft-card featured">
-                            <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=400" alt="NFT Art">
-                            <div class="nft-info">
-                                <h4>Cosmic Journey #124</h4>
-                                <div class="price">2.5 ETH</div>
-                            </div>
+                <figure class="hero-art">
+                    <div class="hero-frame">
+                        <canvas id="heroCanvas" width="720" height="720" role="img" aria-label="A generative flow-field artwork drawn from the hash shown below"></canvas>
+                    </div>
+                    <figcaption>
+                        <div>
+                            <span class="caption-title">Driftlines, preview</span>
+                            <span id="heroHash" class="mono hash"></span>
                         </div>
+                        <button id="regenerate" class="btn btn-ghost btn-small">Draw another</button>
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section id="explore" class="explore">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Artworks</h2>
+                    <p>Click any piece to see it larger, with its hash and price.</p>
+                </div>
+
+                <div class="toolbar">
+                    <div class="chips" id="collectionFilter" role="group" aria-label="Filter by collection"></div>
+                    <div class="toolbar-inputs">
+                        <label class="visually-hidden" for="nftSearch">Search artworks</label>
+                        <input type="search" id="nftSearch" placeholder="Search by title or artist">
+                        <label class="visually-hidden" for="sortSelect">Sort artworks</label>
+                        <select id="sortSelect">
+                            <option value="">Newest first</option>
+                            <option value="price-asc">Price: low to high</option>
+                            <option value="price-desc">Price: high to low</option>
+                            <option value="title-asc">Title: A to Z</option>
+                        </select>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Featured NFTs -->
-    <section id="explore" class="featured">
-        <div class="container">
-            <h2>Featured NFTs</h2>
-            <div class="search-filter">
-                <input type="text" id="nftSearch" placeholder="Search NFTs by title or creator...">
-                <select id="sortSelect">
-                    <option value="">Sort by...</option>
-                    <option value="price-asc">Price: Low to High</option>
-                    <option value="price-desc">Price: High to Low</option>
-                    <option value="title-asc">Title: A-Z</option>
-                    <option value="title-desc">Title: Z-A</option>
-                </select>
+                <div class="art-grid" id="nftGrid" aria-live="polite"></div>
+                <p class="empty" id="emptyState" hidden>No artworks match that search. Try an artist’s name, or clear the collection filter.</p>
             </div>
-            <div class="nft-grid" id="nftGrid">
-                <!-- NFTs loaded by JS -->
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Collections -->
-    <section id="collections" class="collections">
-        <div class="container">
-            <h2>Top Collections</h2>
-            <div class="collections-grid" id="collectionsGrid">
-                <!-- Collections loaded by JS -->
+        <section id="collections" class="collections">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Top collections</h2>
+                    <p>Ranked by floor price. Pick one to filter the artworks above.</p>
+                </div>
+                <ol class="collection-list" id="collectionsGrid"></ol>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Create Section -->
-    <section id="create" class="create">
-        <div class="container">
-            <div class="create-content">
+        <section id="create" class="create">
+            <div class="container create-grid">
                 <div class="create-text">
-                    <h2>Create and Sell Your NFTs</h2>
-                    <p>Join our community of artists and creators. Upload your work, set up your collection, and start selling.</p>
-                    <button class="btn primary">Start Creating</button>
+                    <h2>Publish your own algorithm</h2>
+                    <p>Write a sketch that turns a hash into an image. Collectors mint outputs one by one, and each mint is a new, unrepeatable piece.</p>
+                    <button class="btn btn-primary" id="startCreating">Start a project</button>
                 </div>
-                <div class="create-steps">
-                    <div class="step"><div class="step-number">1</div><h4>Set Up Your Wallet</h4><p>Connect your crypto wallet to get started.</p></div>
-                    <div class="step"><div class="step-number">2</div><h4>Create Your Collection</h4><p>Upload your work and set up your collection.</p></div>
-                    <div class="step"><div class="step-number">3</div><h4>List Them For Sale</h4><p>Choose between auctions and fixed-price listings.</p></div>
-                </div>
+                <ol class="steps">
+                    <li>
+                        <h3>Connect your wallet</h3>
+                        <p>Your address is where sales and royalties are paid.</p>
+                    </li>
+                    <li>
+                        <h3>Upload your sketch</h3>
+                        <p>Plain JavaScript or p5.js. It receives the token hash as its only input.</p>
+                    </li>
+                    <li>
+                        <h3>Set the edition and price</h3>
+                        <p>Choose how many outputs can be minted and what each one costs.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <a class="logo" href="#home">
+                    <svg viewBox="0 0 32 32" aria-hidden="true" width="24" height="24">
+                        <rect x="2" y="2" width="13" height="13" rx="2" fill="var(--saffron)"/>
+                        <rect x="17" y="2" width="13" height="13" rx="6.5" fill="var(--rose)"/>
+                        <rect x="2" y="17" width="13" height="13" rx="6.5" fill="var(--cobalt)"/>
+                        <rect x="17" y="17" width="13" height="13" rx="2" fill="var(--mint)"/>
+                    </svg>
+                    <span>ArtBlocks</span>
+                </a>
+                <p>Generative art, minted on-chain.</p>
+            </div>
+            <div>
+                <h4>Marketplace</h4>
+                <ul>
+                    <li><a href="#explore">All artworks</a></li>
+                    <li><a href="#collections">Collections</a></li>
+                    <li><a href="#create">Publish an algorithm</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Account</h4>
+                <ul>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Favorites</a></li>
+                    <li><a href="#">Watchlist</a></li>
+                </ul>
             </div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="logo">
-                        <i class="fas fa-cube"></i>
-                        <span>ArtBlocks</span>
-                    </div>
-                    <p>The world's first and largest NFT marketplace.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Marketplace</h4>
-                    <ul>
-                        <li><a href="#">All NFTs</a></li>
-                        <li><a href="#">Art</a></li>
-                        <li><a href="#">Collectibles</a></li>
-                        <li><a href="#">Photography</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Account</h4>
-                    <ul>
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="#">Favorites</a></li>
-                        <li><a href="#">Watchlist</a></li>
-                        <li><a href="#">My Collections</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© 2026 ArtBlocks. CRE8TIVE_pixels. All rights reserved.</p>
-            </div>
+        <div class="container footer-bottom">
+            <p>© 2026 ArtBlocks. CRE8TIVE_pixels. All rights reserved.</p>
         </div>
     </footer>
+
+    <dialog id="nftModal" class="modal" aria-labelledby="modalTitle">
+        <div class="modal-body">
+            <canvas id="modalCanvas" width="900" height="900" role="img"></canvas>
+            <div class="modal-info">
+                <button id="closeModal" class="modal-close" aria-label="Close">
+                    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </button>
+                <p id="modalCollection" class="modal-collection"></p>
+                <h2 id="modalTitle"></h2>
+                <p id="modalCreator" class="modal-creator"></p>
+                <p id="modalDescription"></p>
+                <dl class="modal-meta">
+                    <dt>Token hash</dt>
+                    <dd id="modalHash" class="mono hash"></dd>
+                    <dt>Price</dt>
+                    <dd id="modalPrice" class="modal-price"></dd>
+                </dl>
+                <button id="buyButton" class="btn btn-primary btn-block">Buy now</button>
+            </div>
+        </div>
+    </dialog>
+
+    <div class="toast-region" id="toastRegion" aria-live="polite"></div>
 
     <script src="script.js"></script>
 </body>
